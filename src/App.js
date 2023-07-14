@@ -7,18 +7,18 @@ function App() {
 
  const {data, initFetchData, addSelectedItems, selectedItems} = useBeerStore();
 
-
  useEffect(()=> {
   initFetchData('https://api.punkapi.com/v2/beers?page=1')
  }, [])
 
  const handleContextMenu = (event, id) => {
-  event.preventDefault(); // Prevent the default context menu from appearing
+  event.preventDefault();
   addSelectedItems(id)
 };
 
 useEffect(() => {
-  console.log(selectedItems); // Log the updated selectedItems array
+  console.log(selectedItems);
+  
 }, [selectedItems]);
 
 

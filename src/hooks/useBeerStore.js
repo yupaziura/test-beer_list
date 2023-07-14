@@ -5,12 +5,13 @@ export const useBeerStore = create((set) => (
         data: [],
         initFetchData: async (url) => {
             const response = await fetch(url);
-            const data = await response.json(); // Extract the data from the response
+            const data = await response.json();
             set({ data });
           },
+
           selectedItems: [],
           addSelectedItems: (id) =>
           set((state) => ({
-            selectedItems: [...state.selectedItems, id],
+            selectedItems: state.selectedItems.filter(item => item === id).length !== 0? state.selectedItems.filter(item => item !== id) : [...state.selectedItems, id],
           })),
 }))
