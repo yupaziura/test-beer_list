@@ -23,7 +23,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<ListPage/>}/>
-        <Route path='/beer' element={<BeerPage/>}/>
+        <Route path={`/:id`} element={<BeerPage/>}/>
       </Routes>
   </ThemeProvider>
 

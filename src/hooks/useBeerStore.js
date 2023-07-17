@@ -5,14 +5,22 @@ export const useBeerStore = create((set, get) => (
         page: 1,
         data: [],
         selectedItems: [],
+        singleItem: {},
 
-        initFetchData: async () => {
+          initFetchData: async () => {
             const response = await fetch(`https://api.punkapi.com/v2/beers?page=${get().page}`);
             const data = await response.json();
             console.log(data)
             const slicedData = data.slice(0, 15);
 
             set({ data: slicedData });
+          },
+
+          getSingleItem: async (id) => {
+            const filteredData = get().data.filter(item=> {
+              return +item.id === +id})[0];
+
+            set({ singleItem: filteredData });
           },
 
           addSelectedItems: (id) =>

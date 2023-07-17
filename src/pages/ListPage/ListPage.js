@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useBeerStore } from '../../hooks/useBeerStore';
+import { Link } from 'react-router-dom';
 
 import './ListPage.scss';
 
@@ -44,10 +45,10 @@ const deleteNLoad = () => {
         {data.map((item, i)=>{
           const selectedClass = selectedItems.includes(item.id)? 'selected' : null
           return (
-            <div className={selectedClass} key={item.id} onContextMenu={(e)=>handleContextMenu(e,item.id)} >
+            <Link to={`/${item.id}`} className={selectedClass} key={item.id} onContextMenu={(e)=>handleContextMenu(e,item.id)} >
               {item.id}
             {item.name}
-            </div>
+            </Link>
 
           )
         })}
