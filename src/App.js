@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useBeerStore } from './hooks/useBeerStore';
 
-import './App.css';
+import './App.scss';
 
 function App() {
 
@@ -24,9 +24,14 @@ useEffect(() => {
 
   return (
     <div className="App">
+      {selectedItems.length === 0?
+        null:
+        <button>delete</button>
+      }
         {data.map((item, i)=>{
+          const selectedClass = selectedItems.includes(item.id)? 'selected' : null
           return (
-            <div key={item.id} onContextMenu={(e)=>handleContextMenu(e,item.id)} >
+            <div className={selectedClass} key={item.id} onContextMenu={(e)=>handleContextMenu(e,item.id)} >
 
             {item.name}
             </div>
