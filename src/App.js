@@ -5,10 +5,10 @@ import './App.scss';
 
 function App() {
 
- const {data, initFetchData, addSelectedItems, selectedItems} = useBeerStore();
+ const {data, initFetchData, addSelectedItems, selectedItems, deleteSelectedItem} = useBeerStore();
 
  useEffect(()=> {
-  initFetchData('https://api.punkapi.com/v2/beers?page=1')
+  initFetchData()
  }, [])
 
  const handleContextMenu = (event, id) => {
@@ -26,7 +26,7 @@ useEffect(() => {
     <div className="App">
       {selectedItems.length === 0?
         null:
-        <button>delete</button>
+        <button onClick={deleteSelectedItem}>delete</button>
       }
         {data.map((item, i)=>{
           const selectedClass = selectedItems.includes(item.id)? 'selected' : null
