@@ -20,11 +20,12 @@ function App() {
  
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-
-      <Routes>
-        <Route path='/' element={<ListPage/>}/>
-        <Route path={`/:id`} element={<BeerPage/>}/>
-      </Routes>
+      <div className="app">
+        <Routes>
+          <Route path='/' element={<ListPage/>}/>
+          <Route path={`/:id`} element={<BeerPage/>}/>
+        </Routes>
+      </div>
   </ThemeProvider>
 
 
