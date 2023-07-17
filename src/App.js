@@ -5,7 +5,7 @@ import './App.scss';
 
 function App() {
 
- const {data, initFetchData, addSelectedItems, selectedItems, deleteSelectedItem, fetchCurrentPage, deselectAll} = useBeerStore();
+ const {data, initFetchData, addSelectedItems, selectedItems, deleteSelectedItem, fetchCurrentPage, fetchBothPage, fetchNextPage, deselectAll} = useBeerStore();
 
  useEffect(()=> {
   initFetchData()
@@ -17,7 +17,17 @@ function App() {
 };
 
 const deleteNLoad = () => {
-  fetchCurrentPage();
+  const test = Math.max(...data.map(i => i.id)) + selectedItems.length
+  console.log(test)
+  if (selectedItems.length >= 15){
+    fetchNextPage();
+  }
+  else if (test>25){
+    fetchBothPage()
+  }
+  else {
+    fetchCurrentPage();
+  }
   deleteSelectedItem();
 }
 
