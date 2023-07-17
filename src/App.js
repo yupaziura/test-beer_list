@@ -5,7 +5,7 @@ import './App.scss';
 
 function App() {
 
- const {data, initFetchData, addSelectedItems, selectedItems, deleteSelectedItem, fetchCurrentPage} = useBeerStore();
+ const {data, initFetchData, addSelectedItems, selectedItems, deleteSelectedItem, fetchCurrentPage, deselectAll} = useBeerStore();
 
  useEffect(()=> {
   initFetchData()
@@ -26,7 +26,10 @@ const deleteNLoad = () => {
     <div className="App">
       {selectedItems.length === 0?
         null:
-        <button onClick={deleteNLoad}>delete</button>
+        <>
+          <button onClick={deleteNLoad}>delete</button>
+          <button onClick={deselectAll}>deselect</button>
+        </>
       }
         {data.map((item, i)=>{
           const selectedClass = selectedItems.includes(item.id)? 'selected' : null

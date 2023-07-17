@@ -20,6 +20,10 @@ export const useBeerStore = create((set, get) => (
             selectedItems: state.selectedItems.filter(item => item === id).length !== 0? state.selectedItems.filter(item => item !== id) : [...state.selectedItems, id],
           })),
 
+          deselectAll: () => {
+            set({selectedItems: []})
+          },
+
           deleteSelectedItem: () => {
             set(state => {
               const filtered = state.data.filter(item => !state.selectedItems.includes(item.id));
@@ -44,7 +48,7 @@ export const useBeerStore = create((set, get) => (
             const dataNext = await responseNext.json();
             console.log(lastIndex, lastIndex+removedNumber, 'sliced')
 
-            const slicedDataCurrent =[...dataCurrent.slice(lastIndex, lastIndex+removedNumber)]
+            const slicedDataCurrent =[...dataCurrent.slice(lastIndex, lastIndex+removedNumber)];
             console.log(slicedDataCurrent)
 
             set((state) => ({
