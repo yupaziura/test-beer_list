@@ -1,0 +1,17 @@
+.ingredient{
+    width: 330px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.3fr;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 10px;
+
+    font-size: 13px;
+    text-align: left;
+
+    &_divider{
+        width: 100%;
+        border: none;
+        border-top: 0.5px dashed grey;
+    }
+}
