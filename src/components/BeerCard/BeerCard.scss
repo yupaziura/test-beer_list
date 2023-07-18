@@ -42,3 +42,21 @@
 .selected{
     background-color: #926e6e;
 }
+
+@media (max-width: 510px){
+    .beer-card{
+        flex-wrap: wrap;
+        padding: 20px;
+        &_img{
+            width: 100%;
+        }
+
+        &_text{
+            width: 100%;
+        }
+
+        &_name{
+            margin-bottom: 10px;
+        }
+    }
+}
