@@ -22,7 +22,7 @@ const BeerCard = ({item, selected}) => {
                         <i>First brewed: {item.first_brewed}</i>
                     </div>
                     {/* <Divider/> */}
-                    <div className="beer-card_desct">
+                    <div className="beer-card_desct mall-text">
                         <div style={{marginBottom: '10px'}}><b>Description:</b></div>
                         {item.description}
                     </div>

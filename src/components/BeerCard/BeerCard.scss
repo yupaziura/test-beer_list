@@ -1,5 +1,6 @@
 .beer-card{
     display: flex;
+    align-items:center;
     gap: 30px;
     padding: 25px 10px; 
     transition: all .3s;
@@ -9,7 +10,7 @@
     }
 
     &_img{
-        height: 300px;
+        height: 250px;
         width: 35%;
 
         img{
@@ -26,7 +27,7 @@
         gap: 15px;
 
         .small-text{
-            font-size: 15px;
+            font-size: 14px;
         }
     }
 
