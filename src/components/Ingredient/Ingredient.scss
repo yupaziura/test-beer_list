@@ -16,3 +16,23 @@
         border-top: 0.5px dashed grey;
     }
 }
+
+@media (max-width: 620px){
+    .ingredient{
+        width: 100%;
+
+        &_name{
+            justify-self:end;
+        }
+
+        &_divider{
+            justify-self:center;     
+        }
+    }
+}
+
+@media (max-width: 381px){
+    .ingredient{
+        grid-template-columns: 1fr 0.5fr 1.5fr;
+    }
+}

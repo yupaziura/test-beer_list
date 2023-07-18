@@ -39,3 +39,24 @@
         }
     }
 }
+
+
+@media (max-width: 620px){
+    .recipe{
+        &_wrapper{
+            flex-direction:column-reverse;
+        }
+
+        &_img{
+            width: 100%;
+        }
+        &_ingredients{
+            width: 100%;
+        }
+
+        &_pair{
+            flex-wrap: wrap;
+        }
+    }
+
+}
