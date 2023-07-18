@@ -1,13 +1,14 @@
 .ingredient{
     width: 330px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1.3fr;
+    grid-template-columns: 1fr 1fr 1.5fr;
     align-items: center;
     justify-content: space-between;
     grid-gap: 10px;
 
     font-size: 13px;
     text-align: left;
+    margin-bottom: 5px;
 
     &_divider{
         width: 100%;

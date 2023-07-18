@@ -41,6 +41,9 @@ const deleteNLoad = () => {
       <h1 className='header_main'>List of beer recepies</h1>
 
       <Paper sx={{p: 2}} variant="outlined">
+        <p>Click Right Mouse Button to select recipe</p>
+        <p>Click Left Mouse Button to open recipe</p>
+
       <p><b>Selected items:</b></p>
        <div>{selectedItems && selectedItems.length > 0 ? data.filter(item => selectedItems.includes(item.id))?.map(item=>item.name)?.join(', ') : 'No selected items'}</div>
       </Paper>

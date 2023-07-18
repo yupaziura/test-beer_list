@@ -21,11 +21,11 @@ const BeerRecipe = ({item}) => {
                         
                         <h4>Ingredients:</h4>
 
-                        <div className="malt">
+                        <div className="malt recipe_list">
                             <h5>Malt:</h5>
                             {item?.ingredients.malt.map((item, i)=><div key={i}><Ingredient item={item}/></div>)}
                         </div>
-                        <div className="hops">
+                        <div className="hops recipe_list">
                             <h5>Hops:</h5>
                             {item?.ingredients.hops.map((item, i)=><div key={i}><Ingredient item={item}/></div>)}
                         </div>

@@ -21,7 +21,7 @@ const BeerPage = () => {
 
     return (
         <div className='beer-page'>
-            <Link style={{textDecoration:'underline'}} to='/'>Back to list</Link>
+            <Link className='beer-page_link' to='/'>← Back to list</Link>
             {singleItem === undefined?
             <p>Error</p>
             :
