@@ -3,7 +3,23 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    
+
+    &_wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &_img{
+        height: 250px;
+        width: 35%;
+
+        img{
+            width:100%;
+            height:100%;
+            object-fit: contain;
+        }
+    }
     &_pair{
         display: flex;
         gap: 5px;
