@@ -9,29 +9,42 @@ import './ListPage.scss';
 
 function ListPage() {
 
- const {data, initFetchData, addSelectedItems, selectedItems, deleteSelectedItem, fetchCurrentPage, fetchNextPage, deselectAll, page} = useBeerStore();
+ const {data, 
+        initFetchData, 
+        addSelectedItems, 
+        selectedItems, 
+        deleteSelectedItem, 
+        fetchCurrentPage, 
+        fetchNextPage, 
+        deselectAll, 
+        page,
+        getSingleItem} = useBeerStore();
 
  useEffect(()=> {
   initFetchData()
  }, [])
 
- const handleContextMenu = (event, id) => {
+ const rightMC = (event, id) => {
   event.preventDefault();
   addSelectedItems(id)
-};
+  };
 
-const deleteNLoad = () => {
-  const selectedI = Math.max(...data.map(i => i.id)) + selectedItems.length
-  console.log(test)
+  const leftMC = (id) => {
+    getSingleItem(id)
+  }
 
-  if (selectedI>page*25 || selectedItems.length >= 15){
-    fetchNextPage()
+  const deleteNLoad = () => {
+    const selectedI = Math.max(...data.map(i => i.id)) + selectedItems.length
+    console.log(test)
+
+    if (selectedI>page*25 || selectedItems.length >= 15){
+      fetchNextPage()
+    }
+    else {
+      fetchCurrentPage();
+    }
+    deleteSelectedItem();
   }
-  else {
-    fetchCurrentPage();
-  }
-  deleteSelectedItem();
-}
 
 
   return (
@@ -63,7 +76,7 @@ const deleteNLoad = () => {
         {data.map((item, i)=>{
             const selected = selectedItems.includes(item.id)? true : false
             return (
-              <Link to={`/${item.id}`} className={`list_link`} key={item.id} onContextMenu={(e)=>handleContextMenu(e,item.id)} >
+              <Link to={`/${item.id}`} className={`list_link`} onClick={()=>leftMC(item.id)} key={item.id} onContextMenu={(e)=>rightMC(e,item.id)} >
                 <BeerCard item={item} selected={selected}/>
               </Link>
             )

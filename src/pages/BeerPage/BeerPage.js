@@ -10,27 +10,22 @@ import './BeerPage.scss';
 const BeerPage = () => {
 
     const {id} = useParams();
-    const { getSingleItem, singleItem } = useBeerStore();
-
-  useEffect(() => {
-    getSingleItem(id)
-        
-  }, [id]);  
+    const {singleItem} = useBeerStore(); 
 
   console.log(singleItem)
 
     return (
-        <div className='beer-page'>
-            <Link className='beer-page_link' to='/'>← Back to list</Link>
-            {singleItem === undefined?
-            <p>Error</p>
-            :
-            <>
-                <BeerRecipe item={singleItem}/>
-            </>
-            }
-            
-        </div>
+      <div className='beer-page'>
+          <Link className='beer-page_link' to='/'>← Back to list</Link>
+          {singleItem === undefined || singleItem === null?
+          <p>Error</p>
+          :
+          <>
+              <BeerRecipe item={singleItem}/>
+          </>
+          }
+          
+      </div>
     )
 }
 
