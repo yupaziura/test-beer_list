@@ -7,6 +7,7 @@ export const useBeerStore = create((set, get) => (
         selectedItems: [],
         singleItem: null,
 
+        // initial data fetch
           initFetchData: async () => {
             try{
               const response = await fetch(`https://api.punkapi.com/v2/beers?page=${get().page}`);
@@ -20,6 +21,7 @@ export const useBeerStore = create((set, get) => (
             }
           },
 
+          // get sinle item when LMC
           getSingleItem: async (id) => {
             const filteredData = get().data.filter(item=> {
               return +item.id === +id})[0];
@@ -27,15 +29,18 @@ export const useBeerStore = create((set, get) => (
             set({ singleItem: filteredData });
           },
 
+          // add selected item to array when RMC
           addSelectedItems: (id) =>
           set((state) => ({
             selectedItems: state.selectedItems.filter(item => item === id).length !== 0? state.selectedItems.filter(item => item !== id) : [...state.selectedItems, id],
           })),
 
+          // clear selectedItems array
           deselectAll: () => {
             set({selectedItems: []})
           },
 
+          // remove selected items from list
           deleteSelectedItem: () => {
             set(state => {
               const filtered = state.data.filter(item => !state.selectedItems.includes(item.id));
@@ -45,6 +50,7 @@ export const useBeerStore = create((set, get) => (
             })
           },
 
+          // fetch ner records from current page if it is possible
           fetchCurrentPage: async () => {
             const currentPage = get().page;
             const urlCurrent = `https://api.punkapi.com/v2/beers?page=${currentPage}`;
@@ -58,42 +64,13 @@ export const useBeerStore = create((set, get) => (
 
             const slicedDataCurrent =[...dataCurrent.filter(item=>item.id>lastIndex && item.id<=lastIndex+removedNumber)];
 
-            // console.log(slicedDataCurrent)
-
             set((state) => ({
               data: [...state.data, ...slicedDataCurrent],
               selectedItems: [],
             }));
           },
 
-          fetchBothPage: async () => {
-            const currentPage = get().page;
-            const nextPage = currentPage + 1;
-            const urlCurrent = `https://api.punkapi.com/v2/beers?page=${currentPage}`;
-            const urlNext = `https://api.punkapi.com/v2/beers?page=${nextPage}`;
-            const removedNumber = get().selectedItems.length;
-            const lastIndex = Math.max(...get().data.map(i => i.id))
-        
-            const responseCurrent = await fetch(urlCurrent);
-            const dataCurrent = await responseCurrent.json();
-
-            const responseNext = await fetch(urlNext);
-            const dataNext = await responseNext.json();
-            console.log(lastIndex, lastIndex+removedNumber, 'fetchBothPage')
-
-            const slicedDataCurrent =[...dataCurrent.filter(item=>item.id>lastIndex && item.id<=lastIndex+removedNumber)];
-            const slicedDataNext =[...dataNext.slice(0, lastIndex+removedNumber - 25)];
-
-            // console.log(slicedDataCurrent)
-
-            set((state) => ({
-              data: [...state.data, ...slicedDataCurrent, ...slicedDataNext],
-              page: lastIndex+removedNumber>25? nextPage : currentPage,
-              selectedItems: [],
-            }));
-          },
-
-
+          // fetch another 15 records from the next page
           fetchNextPage: async () => {
             const currentPage = get().page;
             const nextPage = currentPage + 1;

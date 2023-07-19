@@ -9,7 +9,7 @@ import './ListPage.scss';
 
 function ListPage() {
 
- const {data, initFetchData, addSelectedItems, selectedItems, deleteSelectedItem, fetchCurrentPage, fetchBothPage, fetchNextPage, deselectAll} = useBeerStore();
+ const {data, initFetchData, addSelectedItems, selectedItems, deleteSelectedItem, fetchCurrentPage, fetchNextPage, deselectAll, page} = useBeerStore();
 
  useEffect(()=> {
   initFetchData()
@@ -21,13 +21,11 @@ function ListPage() {
 };
 
 const deleteNLoad = () => {
-  const test = Math.max(...data.map(i => i.id)) + selectedItems.length
+  const selectedI = Math.max(...data.map(i => i.id)) + selectedItems.length
   console.log(test)
-  if (selectedItems.length >= 15){
-    fetchNextPage();
-  }
-  else if (test>25){
-    fetchBothPage()
+
+  if (selectedI>page*25 || selectedItems.length >= 15){
+    fetchNextPage()
   }
   else {
     fetchCurrentPage();
@@ -44,8 +42,8 @@ const deleteNLoad = () => {
         <p>Click Right Mouse Button to select recipe</p>
         <p>Click Left Mouse Button to open recipe</p>
 
-      <p><b>Selected items:</b></p>
-       <div>{selectedItems && selectedItems.length > 0 ? data.filter(item => selectedItems.includes(item.id))?.map(item=>item.name)?.join(', ') : 'No selected items'}</div>
+        <p><b>Selected items:</b></p>
+        <div>{selectedItems && selectedItems.length > 0 ? data.filter(item => selectedItems.includes(item.id))?.map(item=>item.name)?.join(', ') : 'No selected items'}</div>
       </Paper>
 
       <Paper sx={{p: 2}} variant="outlined">
@@ -68,7 +66,6 @@ const deleteNLoad = () => {
               <Link to={`/${item.id}`} className={`list_link`} key={item.id} onContextMenu={(e)=>handleContextMenu(e,item.id)} >
                 <BeerCard item={item} selected={selected}/>
               </Link>
-
             )
           })}
       </div>
