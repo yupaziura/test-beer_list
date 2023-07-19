@@ -35,7 +35,6 @@ function ListPage() {
 
   const deleteNLoad = () => {
     const selectedI = Math.max(...data.map(i => i.id)) + selectedItems.length
-    console.log(test)
 
     if (selectedI>page*25 || selectedItems.length >= 15){
       fetchNextPage()

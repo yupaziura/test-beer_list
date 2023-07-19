@@ -12,7 +12,6 @@ const BeerPage = () => {
     const {id} = useParams();
     const {singleItem} = useBeerStore(); 
 
-  console.log(singleItem)
 
     return (
       <div className='beer-page'>

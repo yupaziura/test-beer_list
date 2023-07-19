@@ -60,8 +60,6 @@ export const useBeerStore = create((set, get) => (
             const responseCurrent = await fetch(urlCurrent);
             const dataCurrent = await responseCurrent.json();
 
-            console.log(lastIndex, lastIndex+removedNumber, 'fetchCurrentPage')
-
             const slicedDataCurrent =[...dataCurrent.filter(item=>item.id>lastIndex && item.id<=lastIndex+removedNumber)];
 
             set((state) => ({
@@ -79,7 +77,6 @@ export const useBeerStore = create((set, get) => (
             const response = await fetch(url);
             const data = await response.json();
             const slicedData = data.slice(0, 15);
-            console.log('next')
             set((state) => ({
               data: slicedData,
               page: nextPage,
